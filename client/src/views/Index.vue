@@ -220,20 +220,19 @@ export default {
       // Check for redirect, force refresh
       if (this.redirect) {
         this.$route.params.id = undefined;
-        this.idParam = "";
         this.redirect = false;
       }
       
       // ID successfully parsed from URL
-      if (this.idParam !== undefined) {
-        const id = parseInt(this.idParam);
+      if (this.$route.params.id !== undefined) {
+        const id = parseInt(this.$route.params.id);
         // Check if param in URL is a number - if not, redirect to error
         if (Number.isInteger(id)) {
           // Attempt to set randomIndex value to the id and then show spinner
           try {
             // Get specific image from db
             let response = await axios
-              .get(`${process.env.VUE_APP_LOCAL_URL}/api/${this.idParam}`);
+              .get(`${process.env.VUE_APP_LOCAL_URL}/api/${id}`);
 
             // Set song to this image
             this.song = response.data;
@@ -254,11 +253,13 @@ export default {
           }
           // Catch incorrect id param and redirect to error
           catch (ex) {
-            this.$router.push('error');
+            console.log(ex);
+            //this.$router.push('error');
           }
         }
         // ID param is NaN
         else {
+          console.log(ex);
           this.$router.push('error');
         }
       }
