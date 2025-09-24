@@ -64,15 +64,15 @@
           <strong>What is this?</strong><br>
           Tunedream is a game utilizing <em>DeepAI's Text-To-Image API</em> and the <em>Rolling Stone's Top 500 Songs of
             All Time</em> list to create an interesting and unique puzzle for you to solve.<br><br><strong>How does it
-            work?</strong><br>The computer generates a series of images based on a song title, and it's your job to
+            work?</strong><br>The computer generates an image based on a song title, and it's your job to
           guess the song using the image as a clue. <br><br>Be careful as you only have <strong>7</strong> (un)lucky
           attempts to
           crack the title and win the game!
-          <hr>
+          <!-- <hr>
           <strong>Have song suggestions or issues?</strong><br>Send an e-mail to <a
             href="mailto:tunedreamgame@gmail.com">tunedreamgame@gmail.com</a> with your issues, or with your songs and
           they may be added in
-          the future!
+          the future! -->
         </div>
         <br>
         <div class="modal-footer justify-content-center">
