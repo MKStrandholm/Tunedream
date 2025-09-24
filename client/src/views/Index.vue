@@ -259,8 +259,7 @@ export default {
         }
         // ID param is NaN
         else {
-          console.log('nan something went wrong');
-          //this.$router.push('error');
+          this.$router.push('error');
         }
       }
       // No id provided, pick a random index and setup the game for this one
