@@ -24,7 +24,7 @@
         <div class="modal-footer justify-content-center">
           <div class="row">
             <div class="col-lg-auto">
-              <button type="button" class="btn btn-info twitterBtn mb-1">
+              <!-- <button type="button" class="btn btn-info twitterBtn mb-1">
                 <ShareNetwork id="twitter" class="text-light" style="text-decoration: none;" network="twitter" url=""
                   :title="twitterData" description="">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -33,7 +33,7 @@
                       d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
                   </svg> Share to Twitter
                 </ShareNetwork>
-              </button>
+              </button> -->
             </div>
             <div class="col-lg-auto">
               <button type="button" id="copyBtn" class="btn btn-secondary" @click="copyClipboard()"><svg
@@ -217,6 +217,7 @@ export default {
         this.$route.params.id = undefined;
         this.redirect = false;
       }
+      
       // ID successfully parsed from URL
       if (this.$route.params.id !== undefined) {
         const id = parseInt(this.$route.params.id);
@@ -226,7 +227,7 @@ export default {
           try {
             // Get specific image from db
             let response = await axios
-              .get(`${process.env.VUE_APP_LOCAL_URL}/song/${this.$route.params.id}`);
+              .get(`${process.env.VUE_APP_LOCAL_URL}/${this.$route.params.id}`);
 
             // Set song to this image
             this.song = response.data;
@@ -579,33 +580,33 @@ export default {
         }
       }
       body += "\n\n";
-      body += `<p class="lead mt-5">Think you can do better?\n<br>Try for yourself at <a href="${process.env.VUE_APP_LOCAL_URL}/${self.chosenSong}" target="_blank">${process.env.VUE_APP_API_URL}/${self.chosenSong}</p>`;
+      body += `<p class="lead mt-5">Think you can do better?\n<br>Try for yourself at <a href="${process.env.VUE_APP_FRONT_URL}/${self.chosenSong}" target="_blank">${process.env.VUE_APP_FRONT_URL}/${self.chosenSong}</p>`;
       // Set inner HTML of the container to this string
       document.getElementById("scoreContainer").innerHTML = body;
 
       /* TWITTER */
       // Repeat the same process but with Twitter friendly chars
-      let twitterString = "";
-      twitterString += `Tunedream - #${self.chosenSong}\n`;
-      if (self.lives > 0) {
-        twitterString += "\n";
-        for (let i = 0; i < self.lives; i++) {
-          twitterString += "🟢";
-        }
-        for (let j = 0; j < 7 - self.lives; j++) {
-          twitterString += "🔴";
-        }
-      }
+      // let twitterString = "";
+      // twitterString += `Tunedream - #${self.chosenSong}\n`;
+      // if (self.lives > 0) {
+      //   twitterString += "\n";
+      //   for (let i = 0; i < self.lives; i++) {
+      //     twitterString += "🟢";
+      //   }
+      //   for (let j = 0; j < 7 - self.lives; j++) {
+      //     twitterString += "🔴";
+      //   }
+      // }
       // No lives left and lost, show all red circles
-      else {
-        twitterString += "\n";
-        for (let i = 0; i < 7; i++) {
-          twitterString += "🔴";
-        }
-      }
-      twitterString += "\n\n";
-      twitterString += `Think you can do better?\nTry for yourself at http://tunedream.com/${self.chosenSong}`;
-      self.twitterData = twitterString;
+      // else {
+      //   twitterString += "\n";
+      //   for (let i = 0; i < 7; i++) {
+      //     twitterString += "🔴";
+      //   }
+      // }
+      // twitterString += "\n\n";
+      // twitterString += `Think you can do better?\nTry for yourself at http://tunedream.com/${self.chosenSong}`;
+      // self.twitterData = twitterString;
     },
     // Copy results to clipboard
     copyClipboard: async function () {

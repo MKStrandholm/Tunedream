@@ -584,4 +584,29 @@ app.get('/ai', async (req, res) => {
   }
 });
 
+// GET song by ID
+app.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const { data, error } = await supabase
+      .from('songs')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) throw error;
+
+    if (!data) {
+      return res.status(404).send({ error: `Song with id ${id} not found` });
+    }
+
+    res.send(data);
+  } catch (err) {
+    console.error('Failed to fetch song:', err.message);
+    res.status(500).send({ error: err.message });
+  }
+});
+
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
