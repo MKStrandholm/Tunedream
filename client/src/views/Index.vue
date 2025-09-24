@@ -129,7 +129,7 @@ export default {
         if (idParam) {
           const id = parseInt(idParam);
           if (!Number.isInteger(id)) {
-            this.$router.push({ name: 'NotFound' });
+            this.$router.push('/error');
             return;
           }
           const response = await axios.get(`${process.env.VUE_APP_LOCAL_URL}/api/${id}`);
@@ -159,7 +159,7 @@ export default {
         document.getElementById('guess').style.display = 'block';
 
       } catch (err) {
-        this.$router.push({ name: 'NotFound' });
+        this.$router.push('/error');
       } finally {
         spinner.style.display = 'none';
       }
