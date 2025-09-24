@@ -585,7 +585,7 @@ app.get('/ai', async (req, res) => {
 });
 
 // GET song by ID
-app.get('/:id', async (req, res) => {
+app.get('/api/:id', async (req, res) => {
   try {
     const { id } = req.params;
 

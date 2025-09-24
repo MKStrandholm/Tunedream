@@ -229,7 +229,7 @@ export default {
           try {
             // Get specific image from db
             let response = await axios
-              .get(`${process.env.VUE_APP_LOCAL_URL}/${this.$route.params.id}`);
+              .get(`${process.env.VUE_APP_LOCAL_URL}/api/${this.$route.params.id}`);
 
             // Set song to this image
             this.song = response.data;
