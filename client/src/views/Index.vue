@@ -155,7 +155,9 @@ export default {
       loseSfx: "",
       correctSfx: "",
       incorrectSfx: "",
-      warningSfx: ""
+      warningSfx: "",
+
+      idParam: ""
     }
   },
   watch: {
@@ -173,6 +175,7 @@ export default {
     this.incorrectSfx = new Audio(require('../assets/audio/error.ogg'));
     this.warningSfx = new Audio(require('../assets/audio/warning.ogg'));
     this.tadaSfx = new Audio(require('../assets/audio/tada.mp3'));
+    this.idParam = this.$route.params.id;
     this.setup();
   },
   methods: {
@@ -217,19 +220,20 @@ export default {
       // Check for redirect, force refresh
       if (this.redirect) {
         this.$route.params.id = undefined;
+        this.idParam = "";
         this.redirect = false;
       }
       
       // ID successfully parsed from URL
-      if (this.$route.params.id !== undefined) {
-        const id = parseInt(this.$route.params.id);
+      if (this.idParam !== undefined) {
+        const id = parseInt(this.idParam);
         // Check if param in URL is a number - if not, redirect to error
         if (Number.isInteger(id)) {
           // Attempt to set randomIndex value to the id and then show spinner
           try {
             // Get specific image from db
             let response = await axios
-              .get(`${process.env.VUE_APP_LOCAL_URL}/api/${this.$route.params.id}`);
+              .get(`${process.env.VUE_APP_LOCAL_URL}/api/${this.idParam}`);
 
             // Set song to this image
             this.song = response.data;
