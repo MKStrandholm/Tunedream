@@ -231,6 +231,9 @@ export default {
             let response = await axios
               .get(`${process.env.VUE_APP_LOCAL_URL}/${this.$route.params.id}`);
 
+              console.log(response.data);
+              console.log(id);
+
             // Set song to this image
             this.song = response.data;
 
