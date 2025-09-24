@@ -105,7 +105,7 @@
   <div class="row">
     <div class="col-2"></div>
     <div class="col">
-      <input type="text" class="form-control text-center" id="guess" @focus.native="removeError()" v-model="guess"
+      <input type="text" class="form-control text-center" id="guess" @focus.native="removeError()" v-model="guess" @keyup.enter="checkGuess()"
         aria-describedby="guessHelp">
       <br>
       <h1 class="p-1" id="endMsg">{{ this.message }}</h1>
