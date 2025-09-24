@@ -76,7 +76,7 @@
         </div>
         <br>
         <div class="modal-footer justify-content-center">
-          &copy; Tunedream 2022
+          &copy; Tunedream <span id="year">{{this.year}}</span>
         </div>
       </div>
     </div>
@@ -138,6 +138,8 @@ export default {
       guess: "",
       previousGuesses: [],
       chosenSong: "",
+
+      year: new Date().getFullYear(),
 
       twitterData: "",
       fbData: "",
